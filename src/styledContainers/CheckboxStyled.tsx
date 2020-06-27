@@ -1,5 +1,4 @@
-import styled from "styled-components";
-
+import styled from 'styled-components'
 
 const CheckboxStyled = styled.div`
 .container {
@@ -64,6 +63,6 @@ const CheckboxStyled = styled.div`
 .container input:checked ~ .checkmark:after {
   display: block;
 }
-`;
+`
 
-export default CheckboxStyled;
+export default CheckboxStyled

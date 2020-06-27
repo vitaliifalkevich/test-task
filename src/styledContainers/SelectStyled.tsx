@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import expandedIcon from "../assets/img/arrow_expanded.svg";
-import collapsedIcon from "../assets/img/arrow_collapsed.svg";
+import styled from 'styled-components'
+import expandedIcon from '../assets/img/arrow_expanded.svg'
+import collapsedIcon from '../assets/img/arrow_collapsed.svg'
 
 const SelectStyled = styled.div`
 * {
@@ -120,6 +120,6 @@ const SelectStyled = styled.div`
     padding-top: 2px;
     border-radius: 8px;
 }
-`;
+`
 
-export default SelectStyled;
+export default SelectStyled

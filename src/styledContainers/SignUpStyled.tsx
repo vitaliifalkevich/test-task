@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 const SignUpStyled = styled.div`
   background: #FFFFFF 0% 0% no-repeat padding-box;
@@ -8,6 +8,6 @@ const SignUpStyled = styled.div`
   box-sizing: border-box;
   position: absolute;
   min-height: 620px;
-`;
+`
 
-export default SignUpStyled;
+export default SignUpStyled

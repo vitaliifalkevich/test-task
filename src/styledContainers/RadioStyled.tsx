@@ -1,5 +1,4 @@
-import styled from "styled-components";
-
+import styled from 'styled-components'
 
 const RadioStyled = styled.div`
   margin-top: 29px;
@@ -58,6 +57,6 @@ const RadioStyled = styled.div`
     }
   }
 }
-`;
+`
 
-export default RadioStyled;
+export default RadioStyled

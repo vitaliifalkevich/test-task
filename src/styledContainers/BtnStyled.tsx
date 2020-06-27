@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { lighten, darken } from 'polished';
+import styled from 'styled-components'
+import { lighten, darken } from 'polished'
 
 const BtnStyled = styled.div`
 margin-top: 55px;
@@ -25,6 +25,6 @@ button {
   }
   
 }
-`;
+`
 
-export default BtnStyled;
+export default BtnStyled

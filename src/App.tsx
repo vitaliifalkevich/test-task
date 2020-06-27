@@ -1,7 +1,12 @@
-import React from "react";
+import React from "react"
+import SignUpStyled from './styledContainers/SignUpStyled';
+import SignUpWindow from "./components/layouts/SignUpWindow";
 
 function App() {
-  return <div>Good luck!</div>;
+    return (
+        <SignUpStyled>
+            <SignUpWindow/>
+        </SignUpStyled>)
 }
 
 export default App;

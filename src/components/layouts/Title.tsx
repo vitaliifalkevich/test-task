@@ -1,6 +1,7 @@
 import React from 'react'
 
-const Title = ({ title } : {title: string}) => {
+const Title = (props: React.ComponentPropsWithRef<any>) => {
+  const { title }: {title: string} = props
   return (
     <>
       {title}

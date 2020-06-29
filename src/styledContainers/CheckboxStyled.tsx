@@ -6,7 +6,6 @@ const CheckboxStyled = styled.div`
   display: block;
   position: relative;
   padding-left: 20px;
-  margin-bottom: 12px;
   margin-left: 6px;
   cursor: pointer;
   font-size: 14px;

@@ -23,7 +23,9 @@ button {
   background: #d3d3d3;
   cursor: default;
   }
-  
+  img.spinner {
+    width: 60px;
+    }
 }
 `
 

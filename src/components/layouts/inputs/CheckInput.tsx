@@ -1,13 +1,18 @@
-import React, { useCallback } from 'react'
+import React from 'react'
 
-const CheckInput = ({ name, labelValue }: {name: string, labelValue: any}) => {
-  const onChangeHandler = useCallback((event) => {
-    console.log(event.target)
-  }, [])
+const CheckInput = ({
+  name,
+  labelValue,
+  onChange
+}: {
+    name: string,
+    labelValue: any,
+    onChange: any
+}) => {
   return (
     <label className="container">
       {labelValue}
-      <input type="checkbox" name={name} id={name}/>
+      <input type="checkbox" name={name} id={name} onChange={onChange} />
       <span className="checkmark"/>
     </label>
   )

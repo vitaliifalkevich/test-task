@@ -1,11 +1,12 @@
-import React from "react";
+import React from 'react'
 
-const Title = ({title} : {title: string}) => {
-    return (
-        <>
-            {title}
-        </>
-    )
+const Title = (props: React.ComponentPropsWithRef<any>) => {
+  const { title }: {title: string} = props
+  return (
+    <>
+      {title}
+    </>
+  )
 }
 
-export default Title;
+export default Title

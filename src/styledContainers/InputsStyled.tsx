@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import emailIcon from '../assets/img/email-icon.svg';
-import passIcon from '../assets/img/pass-icon.svg';
+import styled from 'styled-components'
+import emailIcon from '../assets/img/email-icon.svg'
+import passIcon from '../assets/img/pass-icon.svg'
 
 const InputsStyled = styled.div`
   input[type=text], input[type=email], input[type=password]   {
@@ -29,6 +29,6 @@ const InputsStyled = styled.div`
     outline: none;
     border: 2px solid #eaeaea;
   }
-`;
+`
 
-export default InputsStyled;
+export default InputsStyled

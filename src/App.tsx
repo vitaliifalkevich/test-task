@@ -1,12 +1,12 @@
-import React from "react"
-import SignUpStyled from './styledContainers/SignUpStyled';
-import SignUpWindow from "./components/layouts/SignUpWindow";
+import React from 'react'
+import SignUpStyled from './styledContainers/SignUpStyled'
+import SignUpWindow from './components/SignUpWindow'
 
-function App() {
-    return (
-        <SignUpStyled>
-            <SignUpWindow/>
-        </SignUpStyled>)
+const App: React.FC = () => {
+  return (
+    <SignUpStyled>
+      <SignUpWindow/>
+    </SignUpStyled>)
 }
 
-export default App;
+export default App

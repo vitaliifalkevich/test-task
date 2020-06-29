@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { lighten, darken } from 'polished';
+import styled from 'styled-components'
+import { lighten, darken } from 'polished'
 
 const BtnStyled = styled.div`
 margin-top: 55px;
@@ -23,8 +23,10 @@ button {
   background: #d3d3d3;
   cursor: default;
   }
-  
+  img.spinner {
+    width: 60px;
+    }
 }
-`;
+`
 
-export default BtnStyled;
+export default BtnStyled

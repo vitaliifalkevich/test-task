@@ -50,9 +50,6 @@ const SignUpWindow: React.FC = () => {
       }).then(res => {
         actions.setSubmitting(false)
         generateAlertData(setAlert, 'success', `user ${values.userName} successfully registered`)
-      }).catch(err => {
-        actions.setSubmitting(false)
-        generateAlertData(setAlert, 'warning', err.message)
         actions.resetForm({
           values: {
             userName: '',
@@ -63,6 +60,9 @@ const SignUpWindow: React.FC = () => {
             agreement: []
           }
         })
+      }).catch(err => {
+        actions.setSubmitting(false)
+        generateAlertData(setAlert, 'warning', err.message)
       })
     }
   })

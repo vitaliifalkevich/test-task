@@ -4,22 +4,27 @@ const Select = ({
   values,
   displayValue,
   name,
-  onChange
-}: {values: string[],
+  onChange,
+  currentValue
+
+}: {
+    values: string[],
     displayValue: string,
     name: string,
-    onChange: any
+    onChange: any,
+    currentValue: string
+
 }) => {
   const availableOptions = useMemo(() => {
     return values.map((item, idx) => {
       return (
         <li key={idx} className="select_option">
-          <input className="select_input" type="radio" name={name} id={item} value={item} onChange={onChange}/>
+          <input className="select_input" type="radio" name={name} id={item} checked={currentValue === item} value={item} onChange={onChange}/>
           <label className="select_label" htmlFor={item}>{item}</label>
         </li>
       )
     })
-  }, [values, name, onChange])
+  }, [values, name, onChange, currentValue])
 
   return (
     <ul className="select">

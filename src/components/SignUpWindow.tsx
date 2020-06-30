@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import TitleStyled from '../styledContainers/TitleStyled'
 import Title from './layouts/Title'
 import TextInput from './layouts/inputs/TextInput'
@@ -15,8 +15,19 @@ import Btn from './layouts/inputs/Btn'
 import { useFormik } from 'formik'
 import SignupSchema from '../validationSchemas/SignupSchema'
 import ErrorInputStyles from '../styledContainers/ErrorInputStyled'
+import { useMutation } from '@apollo/react-hooks'
+import { SIGN_UP } from '../graphql/mutators/signUp'
+import Alert from './layouts/Alert'
+import AlertStyled from '../styledContainers/AlertStyled'
+import generateAlertData from '../helpers/generateAlertData'
 
 const SignUpWindow: React.FC = () => {
+  const [alert, setAlert] = useState({
+    isAlert: false,
+    type: 'success',
+    message: ''
+  })
+  const [signUp] = useMutation(SIGN_UP)
   const formik = useFormik({
     initialValues: {
       userName: '',
@@ -28,10 +39,31 @@ const SignUpWindow: React.FC = () => {
     },
     validationSchema: SignupSchema,
     onSubmit: (values, actions) => {
-      setTimeout(() => {
-        alert(JSON.stringify(values, null, 2))
+      signUp({
+        variables: {
+          userName: values.userName,
+          email: values.email,
+          password: values.password,
+          country: values.chooseCountry,
+          gender: values.gender
+        }
+      }).then(res => {
         actions.setSubmitting(false)
-      }, 2000)
+        generateAlertData(setAlert, 'success', `user ${values.userName} successfully registered`)
+      }).catch(err => {
+        actions.setSubmitting(false)
+        generateAlertData(setAlert, 'warning', err.message)
+        actions.resetForm({
+          values: {
+            userName: '',
+            email: '',
+            password: '',
+            chooseCountry: '',
+            gender: '',
+            agreement: []
+          }
+        })
+      })
     }
   })
   return (
@@ -39,6 +71,11 @@ const SignUpWindow: React.FC = () => {
       <TitleStyled>
         <Title title="Create a new account"/>
       </TitleStyled>
+      {alert.isAlert ? (
+        <AlertStyled>
+          <Alert type={alert.type} message={alert.message}/>
+        </AlertStyled>
+      ) : null}
       <form action="" onSubmit={formik.handleSubmit} autoComplete="off">
         <InputsStyled>
           <TextInput
@@ -75,14 +112,15 @@ const SignUpWindow: React.FC = () => {
             values={availableCountries}
             displayValue="Select country"
             name="chooseCountry"
+            currentValue={formik.values.chooseCountry}
             onChange={formik.handleChange}/>
         </SelectStyled>
         {formik.errors.chooseCountry ? (
           <ErrorInputStyles>{formik.errors.chooseCountry}</ErrorInputStyles>
         ) : null}
         <RadioStyled>
-          <RadioInput name="gender" labelValue="Male" onChange={formik.handleChange}/>
-          <RadioInput name="gender" labelValue="Female" onChange={formik.handleChange}/>
+          <RadioInput name="gender" labelValue="Male" isChecked={formik.values.gender === 'MALE'} value="MALE" onChange={formik.handleChange}/>
+          <RadioInput name="gender" labelValue="Female" isChecked={formik.values.gender === 'FEMALE'} value="FEMALE" onChange={formik.handleChange}/>
         </RadioStyled>
         {formik.errors.gender ? (
           <ErrorInputStyles>{formik.errors.gender}</ErrorInputStyles>
@@ -90,6 +128,7 @@ const SignUpWindow: React.FC = () => {
         <CheckboxStyled>
           <CheckInput
             name="agreement"
+            isChecked={formik.values.agreement.length !== 0}
             labelValue={(
               <span>Accept <a href='#terms'>terms</a> and <a href='#conditions'>conditions</a></span>
             )}
@@ -98,9 +137,11 @@ const SignUpWindow: React.FC = () => {
         {formik.errors.agreement ? (
           <ErrorInputStyles>{formik.errors.agreement}</ErrorInputStyles>
         ) : null}
-        <BtnStyled>
-          <Btn title="Sign up" isDisable={!formik.dirty || !formik.isValid || formik.isSubmitting} isSubmiting={formik.isSubmitting} btnType="submit"/>
-        </BtnStyled>
+        {!alert.isAlert ? (
+          <BtnStyled>
+            <Btn title="Sign up" isDisable={!formik.dirty || !formik.isValid || formik.isSubmitting} isSubmiting={formik.isSubmitting} btnType="submit"/>
+          </BtnStyled>
+        ) : null}
       </form>
     </div>
   )
